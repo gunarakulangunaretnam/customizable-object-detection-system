@@ -134,11 +134,11 @@ while True:
 
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (0,0,255), 4)
             
-            (tw, th), _ = cv2.getTextSize(box_to_display_str_map[box][0], cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
+            (tw, th), _ = cv2.getTextSize(box_to_display_str_map[box][0], cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
 
             # Prints the text.    
-            img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 20), (int(x) + tw, int(y)), (0,0,255), -1)
-            img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0], (int(x), int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,0,0), 2)
+            img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 30), (int(x) + 20 + tw, int(y)), (0,0,255), -1)
+            img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0].upper(), (int(x)+5, int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,0), 2)
 
 
     # Display output
