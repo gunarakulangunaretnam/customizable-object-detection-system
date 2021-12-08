@@ -1,14 +1,14 @@
 import os
 import six     
-import cv2                                                          # To Perform OS level works.
+import cv2                                                          	   # To Perform OS level works.
 import argparse
 import collections
 import numpy as np                                                         # To get arguments
-import tensorflow as tf                                                 # Main Library.
-from object_detection.utils import label_map_util                       # To handle label map.
-from object_detection.utils import config_util                          # To load model pipeline.
-from object_detection.utils import visualization_utils as viz_utils     # To draw rectangles.
-from object_detection.builders import model_builder                     # To load & Build models.            
+import tensorflow as tf                                                    # Main Library.
+from object_detection.utils import label_map_util                          # To handle label map.
+from object_detection.utils import config_util                             # To load model pipeline.
+from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
+from object_detection.builders import model_builder                        # To load & Build models.            
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -67,33 +67,6 @@ category_index = label_map_util.create_category_index_from_labelmap(label_map_pa
 
 cap = cv2.VideoCapture(0)
 
-STANDARD_COLORS = [
-    'AliceBlue', 'Chartreuse', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque',
-    'BlanchedAlmond', 'BlueViolet', 'BurlyWood', 'CadetBlue', 'AntiqueWhite',
-    'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan',
-    'DarkCyan', 'DarkGoldenRod', 'DarkGrey', 'DarkKhaki', 'DarkOrange',
-    'DarkOrchid', 'DarkSalmon', 'DarkSeaGreen', 'DarkTurquoise', 'DarkViolet',
-    'DeepPink', 'DeepSkyBlue', 'DodgerBlue', 'FireBrick', 'FloralWhite',
-    'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod',
-    'Salmon', 'Tan', 'HoneyDew', 'HotPink', 'IndianRed', 'Ivory', 'Khaki',
-    'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue',
-    'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey',
-    'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue',
-    'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime',
-    'LimeGreen', 'Linen', 'Magenta', 'MediumAquaMarine', 'MediumOrchid',
-    'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen',
-    'MediumTurquoise', 'MediumVioletRed', 'MintCream', 'MistyRose', 'Moccasin',
-    'NavajoWhite', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed',
-    'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed',
-    'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple',
-    'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Green', 'SandyBrown',
-    'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue',
-    'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'GreenYellow',
-    'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White',
-    'WhiteSmoke', 'Yellow', 'YellowGreen'
-]
-
-
 while True:
     # Read frame from camera
     ret, image_np = cap.read()
@@ -136,9 +109,6 @@ while True:
 
     			box_to_display_str_map[box].append(display_str)
 
-    			box_to_color_map[box] = STANDARD_COLORS[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] % len(STANDARD_COLORS)] #BoxColor
-
-
 
     im_width, im_height = image_np.shape[1::-1]
 
@@ -163,7 +133,12 @@ while True:
             print(box_to_color_map[box])
 
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (0,0,255), 4)
-            cv2.putText(image_np_with_detections, f'{box_to_display_str_map[box][0]}', (int(x), int(y)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255,0,0), 2)
+            
+            (tw, th), _ = cv2.getTextSize(box_to_display_str_map[box][0], cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
+
+            # Prints the text.    
+            img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 20), (int(x) + tw, int(y)), (0,0,255), -1)
+            img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0], (int(x), int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,0,0), 2)
 
 
     # Display output
