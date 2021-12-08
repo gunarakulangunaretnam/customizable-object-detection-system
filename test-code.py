@@ -2,6 +2,7 @@ import os
 import six     
 import cv2                                                          # To Perform OS level works.
 import argparse
+import collections
 import numpy as np                                                         # To get arguments
 import tensorflow as tf                                                 # Main Library.
 from object_detection.utils import label_map_util                       # To handle label map.
@@ -66,6 +67,32 @@ category_index = label_map_util.create_category_index_from_labelmap(label_map_pa
 
 cap = cv2.VideoCapture(0)
 
+STANDARD_COLORS = [
+    'AliceBlue', 'Chartreuse', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque',
+    'BlanchedAlmond', 'BlueViolet', 'BurlyWood', 'CadetBlue', 'AntiqueWhite',
+    'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan',
+    'DarkCyan', 'DarkGoldenRod', 'DarkGrey', 'DarkKhaki', 'DarkOrange',
+    'DarkOrchid', 'DarkSalmon', 'DarkSeaGreen', 'DarkTurquoise', 'DarkViolet',
+    'DeepPink', 'DeepSkyBlue', 'DodgerBlue', 'FireBrick', 'FloralWhite',
+    'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod',
+    'Salmon', 'Tan', 'HoneyDew', 'HotPink', 'IndianRed', 'Ivory', 'Khaki',
+    'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue',
+    'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey',
+    'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue',
+    'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime',
+    'LimeGreen', 'Linen', 'Magenta', 'MediumAquaMarine', 'MediumOrchid',
+    'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen',
+    'MediumTurquoise', 'MediumVioletRed', 'MintCream', 'MistyRose', 'Moccasin',
+    'NavajoWhite', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed',
+    'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed',
+    'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple',
+    'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Green', 'SandyBrown',
+    'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue',
+    'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'GreenYellow',
+    'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White',
+    'WhiteSmoke', 'Yellow', 'YellowGreen'
+]
+
 
 while True:
     # Read frame from camera
@@ -90,25 +117,52 @@ while True:
 
     min_score_thresh = 0.50
 
+    box_to_display_str_map = collections.defaultdict(list)
+    box_to_color_map = collections.defaultdict(str)
+
     for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
     	if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
+
+    		box = tuple(detections['detection_boxes'][0].numpy()[i].tolist())
+
+    		display_str = ''
     		
     		if (detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
+    			
     			class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
 
-    			print(category_index)
-    			if class_name in labels:
-			    	viz_utils.visualize_boxes_and_labels_on_image_array(
-			          image_np_with_detections,
-			          detections['detection_boxes'][0].numpy(),
-			          (detections['detection_classes'][0].numpy() + label_id_offset).astype(int),
-			          detections['detection_scores'][0].numpy(),
-			          category_index,
-			          use_normalized_coordinates=True,
-			          max_boxes_to_draw=200,
-			          min_score_thresh=.50,
-			          agnostic_mode=False)
+    			display_str = '{}'.format(class_name) # round(100*detections['detection_scores'][0].numpy()[i] If you want the detection score
+
+    			box_to_display_str_map[box].append(display_str)
+
+    			box_to_color_map[box] = STANDARD_COLORS[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] % len(STANDARD_COLORS)] #BoxColor
+
+
+
+    im_width, im_height = image_np.shape[1::-1]
+
+    for box, color in box_to_color_map.items():
+    	ymin, xmin, ymax, xmax = box
+
+    	ymin = ymin * im_height
+    	xmin = xmin * im_width
+    	ymax = ymax * im_height
+    	xmax = xmax * im_width
+
+    	x = xmin
+    	y = ymin
+    	w = xmax - xmin
+    	h = ymax - ymin
+
+    	if box_to_display_str_map[box][0] in labels:
+
+    		#box_to_display_str_map[box][0] Label Name
+            #color (we are getting the color) but, we dont use it
+
+            cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (0,0,255), 4)
+            cv2.putText(image_np_with_detections, f'{box_to_display_str_map[box][0]}', (int(x), int(y)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255,0,0), 2)
+
 
     # Display output
     cv2.imshow('object detection', cv2.resize(image_np_with_detections, (800, 600)))
