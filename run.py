@@ -1,9 +1,10 @@
-import os
+import os                                                                  # To Perform OS level works.
 import six     
-import cv2                                                          	   # To Perform OS level works.
-import argparse
+import cv2                                                                 # OpenCV for Computer Vision
+import labelcolors                                                         # It has a dictionary that contains colors for each label                                                  	  
+import argparse                                                            # To get arguments
 import collections
-import numpy as np                                                         # To get arguments
+import numpy as np                                                         
 import tensorflow as tf                                                    # Main Library.
 from object_detection.utils import label_map_util                          # To handle label map.
 from object_detection.utils import config_util                             # To load model pipeline.
@@ -127,17 +128,24 @@ while True:
 
     	if box_to_display_str_map[box][0] in labels:
 
-    		#box_to_display_str_map[box][0] Label Name
-            #color (we are getting the color) but, we dont use it
 
-            print(box_to_color_map[box])
+            try: # Getting color from labelcolors.label_with_colors
+                r = int(labelcolors.label_with_colors[box_to_display_str_map[box][0]].split(",")[0])
+                g = int(labelcolors.label_with_colors[box_to_display_str_map[box][0]].split(",")[1])
+                b = int(labelcolors.label_with_colors[box_to_display_str_map[box][0]].split(",")[2])
 
-            cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (0,0,255), 4)
+            except Exception as e:  # If suppose color is not found for the label, it will be assgined as red. 
+                r = 255
+                g = 0
+                b = 0
+               
+            
+            cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (b, g, r), 4)
             
             (tw, th), _ = cv2.getTextSize(box_to_display_str_map[box][0], cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
 
             # Prints the text.    
-            img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 30), (int(x) + 20 + tw, int(y)), (0,0,255), -1)
+            img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 30), (int(x) + 20 + tw, int(y)), (b, g, r), -1)
             img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0].upper(), (int(x)+5, int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,0), 2)
 
 
