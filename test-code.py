@@ -1,5 +1,8 @@
-import os                                                               # To Perform OS level works.
-import argparse                                                         # To get arguments
+import os
+import six     
+import cv2                                                          # To Perform OS level works.
+import argparse
+import numpy as np                                                         # To get arguments
 import tensorflow as tf                                                 # Main Library.
 from object_detection.utils import label_map_util                       # To handle label map.
 from object_detection.utils import config_util                          # To load model pipeline.
@@ -58,14 +61,11 @@ def detect_fn(image):
     return detections, prediction_dict, tf.reshape(shapes, [-1])
 
 
-category_index = label_map_util.create_category_index_from_labelmap("data/models/ssd_resnet101_v1_fpn_640x640_coco17_tpu-8/mscoco_label_map.pbtxt",
+category_index = label_map_util.create_category_index_from_labelmap(label_map_path,
                                                                     use_display_name=True)
-
-import cv2
 
 cap = cv2.VideoCapture(0)
 
-import numpy as np
 
 while True:
     # Read frame from camera
@@ -88,16 +88,27 @@ while True:
     label_id_offset = 1
     image_np_with_detections = image_np.copy()
 
-    viz_utils.visualize_boxes_and_labels_on_image_array(
-          image_np_with_detections,
-          detections['detection_boxes'][0].numpy(),
-          (detections['detection_classes'][0].numpy() + label_id_offset).astype(int),
-          detections['detection_scores'][0].numpy(),
-          category_index,
-          use_normalized_coordinates=True,
-          max_boxes_to_draw=200,
-          min_score_thresh=.50,
-          agnostic_mode=False)
+    min_score_thresh = 0.50
+
+    for i in range(detections['detection_boxes'][0].numpy().shape[0]):
+
+    	if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
+    		
+    		if (detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
+    			class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
+
+    			print(category_index)
+    			if class_name in labels:
+			    	viz_utils.visualize_boxes_and_labels_on_image_array(
+			          image_np_with_detections,
+			          detections['detection_boxes'][0].numpy(),
+			          (detections['detection_classes'][0].numpy() + label_id_offset).astype(int),
+			          detections['detection_scores'][0].numpy(),
+			          category_index,
+			          use_normalized_coordinates=True,
+			          max_boxes_to_draw=200,
+			          min_score_thresh=.50,
+			          agnostic_mode=False)
 
     # Display output
     cv2.imshow('object detection', cv2.resize(image_np_with_detections, (800, 600)))
