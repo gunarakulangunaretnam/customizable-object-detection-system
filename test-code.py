@@ -142,7 +142,7 @@ while True:
 
     im_width, im_height = image_np.shape[1::-1]
 
-    for box, color in box_to_color_map.items():
+    for box, color in box_to_display_str_map.items():
     	ymin, xmin, ymax, xmax = box
 
     	ymin = ymin * im_height
@@ -159,6 +159,8 @@ while True:
 
     		#box_to_display_str_map[box][0] Label Name
             #color (we are getting the color) but, we dont use it
+
+            print(box_to_color_map[box])
 
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (0,0,255), 4)
             cv2.putText(image_np_with_detections, f'{box_to_display_str_map[box][0]}', (int(x), int(y)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255,0,0), 2)
