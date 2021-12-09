@@ -22,6 +22,7 @@ for gpu in gpus:
 ap = argparse.ArgumentParser()              													# Create argparse object
 ap.add_argument("-m", "--model_name", required=True, help="Name of the model") 					# Create model_name argument
 ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")  # Create labels argument
+ap.add_argument("-a", "--alarm", required=True, help="Alram status")                            # Create labels argument
 args = vars(ap.parse_args())                													# Build argparse
 
 processing_type = ""          		# Store processing type.
@@ -119,11 +120,14 @@ while True:
                 display_str = '{}'.format(class_name)
                 box_to_display_str_map[box].append(display_str)
 
-                number_of_time_detected = number_of_time_detected + 1
 
-                if number_of_time_detected == 20:
-                    thread1 = threading.Thread(target = play_alarm)
-                    thread1.start()
+                if args["alarm"] == "[TRUE]": 
+
+                    number_of_time_detected = number_of_time_detected + 1
+
+                    if number_of_time_detected == 20:
+                        thread1 = threading.Thread(target = play_alarm)
+                        thread1.start()
 
 
     im_width, im_height = image_np.shape[1::-1]
