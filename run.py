@@ -20,12 +20,23 @@ en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS
 ru_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_RU-RU_IRINA_11.0"  # male
 engine.setProperty('voice', en_voice_id)
 rate = engine.getProperty('rate')
-engine.setProperty('rate', rate - 20)
+engine.setProperty('rate', rate - 30)
 
-def talk_function(text):
+
+
+def talk_function(text):               # Text to speech convertion
     print("Computer: {}".format(text))
-    engine.say(audio)
+    engine.say(text)
     engine.runAndWait()
+
+number_of_time_detected = 0
+
+def play_alarm():                     # Function to play sound
+    global number_of_time_detected
+    number_of_time_detected
+    playsound.playsound("system-files//alarm.mp3")
+    talk_function("Warning,Warning someone entered the private area")
+    number_of_time_detected = 0
 
 
 # Enable GPU dynamic memory allocation
@@ -59,14 +70,6 @@ else:
 if processing_type == "labels":
     labels = args['labels'].split(",")    # Store given labels to the labels list.
 
-
-number_of_time_detected = 0
-
-def play_alarm():
-    global number_of_time_detected
-    number_of_time_detected
-    playsound.playsound("system-files//alarm.mp3")
-    number_of_time_detected = 0
 
 
 
