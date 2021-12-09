@@ -14,11 +14,12 @@ from object_detection.utils import config_util                             # To 
 from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
 from object_detection.builders import model_builder                        # To load & Build models.
 
-ap = argparse.ArgumentParser()                                                                  # Create argparse object
-ap.add_argument("-m", "--model_name", required=True, help="Name of the model")                  # Create model_name argument
-ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")  # Create labels argument
-ap.add_argument("-a", "--alarm", required=True, help="Alram status")                            # Create labels argument
-args = vars(ap.parse_args())                                                                    # Build argparse
+ap = argparse.ArgumentParser()                                                                          # Create argparse object
+ap.add_argument("-m", "--model_name", required=True, help="Name of the model")                          # Create model_name argument
+ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")          # Create labels argument
+ap.add_argument("-a", "--alarm", required=True, help="Alram status")                                    # Alarm required or not argument
+ap.add_argument("-t", "--minimum_threshold", required=True, help="Minimum threshold of detection rate") # minimum_threshol
+args = vars(ap.parse_args())                                                                            # Build argparse
 
 #Text to speech setup.
 engine = pyttsx3.init()
@@ -129,7 +130,7 @@ while True:
     label_id_offset = 1
     image_np_with_detections = image_np.copy()
 
-    min_score_thresh = 0.50
+    min_score_thresh = int(f'{args["minimum_threshold"]}') / 100
 
     box_to_display_str_map = collections.defaultdict(list)
     box_to_color_map = collections.defaultdict(str)
