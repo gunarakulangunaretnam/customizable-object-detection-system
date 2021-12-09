@@ -16,5 +16,26 @@ namespace object_detection_alerting_system
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (model_url_textbox.Text != "")
+            {
+
+               
+            }
+            else {
+
+                MessageBox.Show("Please enter a url", "Wanring",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string targetURL = @"https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md";
+            System.Diagnostics.Process.Start(targetURL);
+
+        }
     }
 }

@@ -19,7 +19,9 @@ namespace object_detection_alerting_system
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            model_management model_Management = new model_management(); 
+            model_Management.Show();
+            this.Hide();
         }
     }
 }
