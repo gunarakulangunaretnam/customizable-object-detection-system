@@ -5,8 +5,9 @@ import labelcolors                                                         # It 
 import argparse                                                            # To get arguments
 import collections
 import numpy as np
-import threading
-import playsound
+import pyttsx3                                                             # To perform text to speech function
+import threading                                                           # To perform multi-threading operations
+import playsound                                                           # To play sounds
 import tensorflow as tf                                                    # Main Library.
 from object_detection.utils import label_map_util                          # To handle label map.
 from object_detection.utils import config_util                             # To load model pipeline.
