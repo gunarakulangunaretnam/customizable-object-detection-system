@@ -1,0 +1,12 @@
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\bin\Debug\object-detection-alerting-system.exe.config
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\bin\Debug\object-detection-alerting-system.exe
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\bin\Debug\object-detection-alerting-system.pdb
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.csproj.AssemblyReference.cache
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.csproj.SuggestedBindingRedirects.cache
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.Form1.resources
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.Properties.Resources.resources
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.csproj.GenerateResource.cache
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.csproj.CoreCompileInputs.cache
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.exe
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.pdb
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.sub_dashboard.resources

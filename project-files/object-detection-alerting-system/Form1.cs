@@ -16,5 +16,29 @@ namespace object_detection_alerting_system
         {
             InitializeComponent();
         }
+
+
+        int progressBarValue = 0;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            progressBarValue++;
+            progressBar1.Value = progressBarValue;
+
+            if(progressBarValue == 100)
+            {
+                timer1.Stop();
+                this.Hide();
+                sub_dashboard sub_Dashboard = new sub_dashboard();
+                sub_Dashboard.Show();
+            }
+        
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
     }
 }
