@@ -1,15 +1,17 @@
 import os                                                                  # To Perform OS level works.
-import six     
+import six
 import cv2                                                                 # OpenCV for Computer Vision
-import labelcolors                                                         # It has a dictionary that contains colors for each label                                                  	  
+import labelcolors                                                         # It has a dictionary that contains colors for each label
 import argparse                                                            # To get arguments
 import collections
-import numpy as np                                                         
+import numpy as np
+import threading
+import playsound
 import tensorflow as tf                                                    # Main Library.
 from object_detection.utils import label_map_util                          # To handle label map.
 from object_detection.utils import config_util                             # To load model pipeline.
 from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
-from object_detection.builders import model_builder                        # To load & Build models.            
+from object_detection.builders import model_builder                        # To load & Build models.
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -30,16 +32,26 @@ model_config_path =  f'data/models/{args["model_name"]}/pipeline.config'        
 checkpoint_model_path   =  f'data/models/{args["model_name"]}/checkpoint/ckpt-0'      # Store the path of model
 label_map_path    =  f'data/mscoco_label_map.pbtxt'                             # Store the path of label_map
 
-if args['labels'] == "all_labels":   
+if args['labels'] == "all_labels":
 
-	processing_type = "all_labels"	# Change processing_type as all_labels
+    processing_type = "all_labels"	# Change processing_type as all_labels
 
 else:
-	processing_type = "labels"      # Change as labels to perform 
+    processing_type = "labels"      # Change as labels to perform
 
 
-if processing_type == "labels":     
-	labels = args['labels'].split(",")    # Store given labels to the labels list.
+if processing_type == "labels":
+    labels = args['labels'].split(",")    # Store given labels to the labels list.
+
+
+number_of_time_detected = 0
+
+def play_alarm():
+    global number_of_time_detected
+    number_of_time_detected
+    playsound.playsound("system-files//alarm.mp3")
+    number_of_time_detected = 0
+
 
 
 # Load pipeline config and build a detection model
@@ -98,17 +110,20 @@ while True:
 
     	if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
 
-    		box = tuple(detections['detection_boxes'][0].numpy()[i].tolist())
+            box = tuple(detections['detection_boxes'][0].numpy()[i].tolist())
 
-    		display_str = ''
-    		
-    		if (detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
-    			
-    			class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
+            display_str = ""
 
-    			display_str = '{}'.format(class_name) # round(100*detections['detection_scores'][0].numpy()[i] If you want the detection score
+            if(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
+                class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
+                display_str = '{}'.format(class_name)
+                box_to_display_str_map[box].append(display_str)
 
-    			box_to_display_str_map[box].append(display_str)
+                number_of_time_detected = number_of_time_detected + 1
+
+                if number_of_time_detected == 20:
+                    thread1 = threading.Thread(target = play_alarm)
+                    thread1.start()
 
 
     im_width, im_height = image_np.shape[1::-1]
@@ -134,17 +149,17 @@ while True:
                 g = int(labelcolors.label_with_colors[box_to_display_str_map[box][0]].split(",")[1])
                 b = int(labelcolors.label_with_colors[box_to_display_str_map[box][0]].split(",")[2])
 
-            except Exception as e:  # If suppose color is not found for the label, it will be assgined as red. 
+            except Exception as e:  # If suppose color is not found for the label, it will be assgined as red.
                 r = 255
                 g = 0
                 b = 0
-               
-            
+
+
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (b, g, r), 4)
-            
+
             (tw, th), _ = cv2.getTextSize(box_to_display_str_map[box][0], cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
 
-            # Prints the text.    
+            # Prints the text.
             img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 30), (int(x) + 20 + tw, int(y)), (b, g, r), -1)
             img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0].upper(), (int(x)+5, int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,0), 2)
 
@@ -153,10 +168,7 @@ while True:
     cv2.imshow('object detection', cv2.resize(image_np_with_detections, (800, 600)))
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
-        break 
+        break
 
 cap.release()
 cv2.destroyAllWindows()
-
-
-
