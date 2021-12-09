@@ -14,6 +14,20 @@ from object_detection.utils import config_util                             # To 
 from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
 from object_detection.builders import model_builder                        # To load & Build models.
 
+#Text to speech setup.
+engine = pyttsx3.init()
+en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"  # female
+ru_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_RU-RU_IRINA_11.0"  # male
+engine.setProperty('voice', en_voice_id)
+rate = engine.getProperty('rate')
+engine.setProperty('rate', rate - 20)
+
+def talk_function(text):
+    print("Computer: {}".format(text))
+    engine.say(audio)
+    engine.runAndWait()
+
+
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
