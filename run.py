@@ -134,6 +134,8 @@ while True:
     box_to_display_str_map = collections.defaultdict(list)
     box_to_color_map = collections.defaultdict(str)
 
+    number_of_items = 0
+
     for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
     	if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
@@ -145,7 +147,9 @@ while True:
             if(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
                 class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
                 display_str = '{}'.format(class_name)
-                box_to_display_str_map[box].append(display_str)
+ 
+
+                box_to_display_str_map[box].append(display_str) # Join the number of eleements with label Name
 
 
                 if args["alarm"] == "[TRUE]":
@@ -172,7 +176,7 @@ while True:
     	w = xmax - xmin
     	h = ymax - ymin
 
-    	if box_to_display_str_map[box][0] in labels:
+    	if box_to_display_str_map[box][0] in labels: # Get only label name not the total number of items
 
 
             try: # Getting color from labelcolors.label_with_colors
