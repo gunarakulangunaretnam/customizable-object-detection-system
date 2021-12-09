@@ -14,6 +14,12 @@ from object_detection.utils import config_util                             # To 
 from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
 from object_detection.builders import model_builder                        # To load & Build models.
 
+ap = argparse.ArgumentParser()                                                                  # Create argparse object
+ap.add_argument("-m", "--model_name", required=True, help="Name of the model")                  # Create model_name argument
+ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")  # Create labels argument
+ap.add_argument("-a", "--alarm", required=True, help="Alram status")                            # Create labels argument
+args = vars(ap.parse_args())                                                                    # Build argparse
+
 #Text to speech setup.
 engine = pyttsx3.init()
 en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"  # female
@@ -22,7 +28,17 @@ engine.setProperty('voice', en_voice_id)
 rate = engine.getProperty('rate')
 engine.setProperty('rate', rate - 30)
 
+alarm_text_to_speech_notes = ""
 
+def load_alarm_text_to_speech_notes():
+    global alarm_text_to_speech_notes
+
+    if args["alarm"] == "[TRUE]":
+        file = open('system-files//alarm-text-to-speech-notes.txt')
+        alarm_text_to_speech_notes = file.readline().strip()
+        
+
+load_alarm_text_to_speech_notes()
 
 def talk_function(text):               # Text to speech convertion
     print("Computer: {}".format(text))
@@ -35,21 +51,14 @@ def play_alarm():                     # Function to play sound
     global number_of_time_detected
     number_of_time_detected
     playsound.playsound("system-files//alarm.mp3")
-    talk_function("Warning,Warning someone entered the private area")
+    talk_function(alarm_text_to_speech_notes)
     number_of_time_detected = 0
-
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
-
-ap = argparse.ArgumentParser()              													# Create argparse object
-ap.add_argument("-m", "--model_name", required=True, help="Name of the model") 					# Create model_name argument
-ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")  # Create labels argument
-ap.add_argument("-a", "--alarm", required=True, help="Alram status")                            # Create labels argument
-args = vars(ap.parse_args())                													# Build argparse
 
 processing_type = ""          		# Store processing type.
 labels = []					  		# Store Labels in a list.
@@ -139,7 +148,7 @@ while True:
                 box_to_display_str_map[box].append(display_str)
 
 
-                if args["alarm"] == "[TRUE]": 
+                if args["alarm"] == "[TRUE]":
 
                     number_of_time_detected = number_of_time_detected + 1
 
