@@ -41,5 +41,21 @@ namespace object_detection_alerting_system
         {
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            target_objects.Text = "";
+
+            foreach (var item in listBox1.Items)
+            {
+
+                target_objects.Text += "," + item.ToString();
+            }
+
+            target_objects.Text = target_objects.Text.TrimStart(',');
+            selected_objects = target_objects.Text;
+
+        }
     }
 }

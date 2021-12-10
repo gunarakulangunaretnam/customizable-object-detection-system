@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.target_objects = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.target_objects = new System.Windows.Forms.RichTextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.target_objects);
             this.groupBox1.Controls.Add(this.listBox1);
@@ -47,6 +49,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Target Objects";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(821, 620);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(166, 44);
+            this.button3.TabIndex = 61;
+            this.button3.Text = "Done";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // target_objects
+            // 
+            this.target_objects.Location = new System.Drawing.Point(435, 62);
+            this.target_objects.MaxLength = 300;
+            this.target_objects.Name = "target_objects";
+            this.target_objects.ReadOnly = true;
+            this.target_objects.Size = new System.Drawing.Size(552, 522);
+            this.target_objects.TabIndex = 60;
+            this.target_objects.Text = "";
             // 
             // listBox1
             // 
@@ -136,32 +161,22 @@
             this.listBox1.Location = new System.Drawing.Point(32, 62);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(271, 580);
+            this.listBox1.Size = new System.Drawing.Size(271, 516);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // target_objects
+            // button1
             // 
-            this.target_objects.Location = new System.Drawing.Point(435, 62);
-            this.target_objects.MaxLength = 300;
-            this.target_objects.Name = "target_objects";
-            this.target_objects.ReadOnly = true;
-            this.target_objects.Size = new System.Drawing.Size(552, 522);
-            this.target_objects.TabIndex = 60;
-            this.target_objects.Text = "";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(821, 620);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(166, 44);
-            this.button3.TabIndex = 61;
-            this.button3.Text = "Done";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.Location = new System.Drawing.Point(32, 601);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(271, 44);
+            this.button1.TabIndex = 62;
+            this.button1.Text = "Select All Objects";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // target_objects_panel
             // 
@@ -183,5 +198,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.RichTextBox target_objects;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
     }
 }
