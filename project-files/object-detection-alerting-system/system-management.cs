@@ -146,7 +146,7 @@ namespace object_detection_alerting_system
             SQLiteConnection SqlConnection = new SQLiteConnection("Data Source=system-files/database.db");
             SqlConnection.Open();
 
-            SQLiteCommand cmd = new SQLiteCommand("DELETE FROM created_systems WHERE system_name = "+ systemName + "", SqlConnection);
+            SQLiteCommand cmd = new SQLiteCommand("DELETE FROM created_systems WHERE system_name = '"+ systemName + "'", SqlConnection);
             cmd.ExecuteNonQuery();
 
             SqlConnection.Close();
