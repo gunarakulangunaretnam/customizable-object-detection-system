@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.target_objects = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.min_threshold_text = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,22 +47,28 @@
             this.label2 = new System.Windows.Forms.Label();
             this.system_name_box = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.target_objects = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.browse_btn = new System.Windows.Forms.Button();
+            this.webcam_index_box = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.min_tracker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.webcam_index_box)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(102, 629);
+            this.dataGridView1.Location = new System.Drawing.Point(102, 652);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1728, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(1728, 391);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -79,9 +87,9 @@
             this.button4.BackColor = System.Drawing.Color.DarkRed;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(102, 568);
+            this.button4.Location = new System.Drawing.Point(1646, 561);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(370, 44);
+            this.button4.Size = new System.Drawing.Size(184, 44);
             this.button4.TabIndex = 6;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = false;
@@ -111,6 +119,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create Systems";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.OrangeRed;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(1304, 416);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(180, 44);
+            this.button3.TabIndex = 60;
+            this.button3.Text = "Clear";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // target_objects
+            // 
+            this.target_objects.Location = new System.Drawing.Point(230, 251);
+            this.target_objects.MaxLength = 300;
+            this.target_objects.Name = "target_objects";
+            this.target_objects.ReadOnly = true;
+            this.target_objects.Size = new System.Drawing.Size(482, 117);
+            this.target_objects.TabIndex = 59;
+            this.target_objects.Text = "";
+            this.target_objects.Click += new System.EventHandler(this.target_objects_Click);
+            this.target_objects.TextChanged += new System.EventHandler(this.target_objects_TextChanged);
             // 
             // button2
             // 
@@ -244,38 +277,88 @@
             this.button1.BackColor = System.Drawing.Color.Green;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(494, 568);
+            this.button1.Location = new System.Drawing.Point(1450, 561);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(370, 44);
+            this.button1.Size = new System.Drawing.Size(184, 44);
             this.button1.TabIndex = 8;
             this.button1.Text = "Start the System";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // target_objects
+            // radioButton1
             // 
-            this.target_objects.Location = new System.Drawing.Point(230, 251);
-            this.target_objects.MaxLength = 300;
-            this.target_objects.Name = "target_objects";
-            this.target_objects.ReadOnly = true;
-            this.target_objects.Size = new System.Drawing.Size(482, 117);
-            this.target_objects.TabIndex = 59;
-            this.target_objects.Text = "";
-            this.target_objects.Click += new System.EventHandler(this.target_objects_Click);
-            this.target_objects.TextChanged += new System.EventHandler(this.target_objects_TextChanged);
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(105, 571);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(157, 24);
+            this.radioButton1.TabIndex = 9;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Webcam (Live)";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // button3
+            // radioButton2
             // 
-            this.button3.BackColor = System.Drawing.Color.OrangeRed;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(1304, 416);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(180, 44);
-            this.button3.TabIndex = 60;
-            this.button3.Text = "Clear";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(294, 571);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(163, 24);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Recorded Video";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(625, 570);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(133, 22);
+            this.label7.TabIndex = 61;
+            this.label7.Text = "Webcam Index:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(870, 571);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 22);
+            this.label8.TabIndex = 62;
+            this.label8.Text = "Video Path:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(992, 571);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(407, 27);
+            this.textBox1.TabIndex = 63;
+            // 
+            // browse_btn
+            // 
+            this.browse_btn.BackColor = System.Drawing.Color.Teal;
+            this.browse_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browse_btn.ForeColor = System.Drawing.Color.Transparent;
+            this.browse_btn.Location = new System.Drawing.Point(1317, 601);
+            this.browse_btn.Name = "browse_btn";
+            this.browse_btn.Size = new System.Drawing.Size(84, 29);
+            this.browse_btn.TabIndex = 61;
+            this.browse_btn.Text = "Browse";
+            this.browse_btn.UseVisualStyleBackColor = false;
+            // 
+            // webcam_index_box
+            // 
+            this.webcam_index_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.webcam_index_box.Location = new System.Drawing.Point(775, 570);
+            this.webcam_index_box.Name = "webcam_index_box";
+            this.webcam_index_box.Size = new System.Drawing.Size(56, 28);
+            this.webcam_index_box.TabIndex = 65;
             // 
             // system_management
             // 
@@ -283,6 +366,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.webcam_index_box);
+            this.Controls.Add(this.browse_btn);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button4);
@@ -296,7 +386,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.min_tracker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.webcam_index_box)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -321,5 +413,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox target_objects;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button browse_btn;
+        private System.Windows.Forms.NumericUpDown webcam_index_box;
     }
 }

@@ -58,6 +58,10 @@ namespace object_detection_alerting_system
             SelectData();
             getModels();
             alarm_status_combo.SelectedIndex = 0;
+
+
+            radioButton1.Checked = true;
+            browse_btn.Enabled = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -296,6 +300,24 @@ namespace object_detection_alerting_system
         private void button3_Click(object sender, EventArgs e)
         {
             ClearForms();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked == true) {
+
+                browse_btn.Enabled = false;
+                webcam_index_box.Enabled = true;
+            }
+
+        
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            browse_btn.Enabled = true;
+            webcam_index_box.Enabled = false;
+
         }
     }
 }
