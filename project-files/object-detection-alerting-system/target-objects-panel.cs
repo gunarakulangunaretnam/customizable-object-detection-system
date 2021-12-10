@@ -17,9 +17,29 @@ namespace object_detection_alerting_system
             InitializeComponent();
         }
 
+        public string selected_objects = "";
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            target_objects.Text = "";
+
+            foreach (var item in listBox1.SelectedItems) {
+
+                target_objects.Text += "," + item.ToString();
+            }
+
+            target_objects.Text = target_objects.Text.TrimStart(',');
+            selected_objects = target_objects.Text; 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

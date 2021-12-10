@@ -135,8 +135,10 @@
             "Toothbrush"});
             this.listBox1.Location = new System.Drawing.Point(32, 62);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox1.Size = new System.Drawing.Size(271, 580);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // target_objects
             // 
@@ -159,6 +161,7 @@
             this.button3.TabIndex = 61;
             this.button3.Text = "Done";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // target_objects_panel
             // 
@@ -167,6 +170,7 @@
             this.ClientSize = new System.Drawing.Size(1042, 748);
             this.Controls.Add(this.groupBox1);
             this.Name = "target_objects_panel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Target Objects";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

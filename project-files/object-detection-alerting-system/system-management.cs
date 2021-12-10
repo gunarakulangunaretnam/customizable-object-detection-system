@@ -80,5 +80,18 @@ namespace object_detection_alerting_system
             }
             
         }
+
+        private void target_objects_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void target_objects_Click(object sender, EventArgs e)
+        {
+            target_objects_panel TargetObject = new target_objects_panel();
+            TargetObject.ShowDialog();
+            target_objects.Text = TargetObject.selected_objects;
+            
+        }
     }
 }

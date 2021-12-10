@@ -255,6 +255,8 @@
             this.target_objects.Size = new System.Drawing.Size(482, 117);
             this.target_objects.TabIndex = 59;
             this.target_objects.Text = "";
+            this.target_objects.Click += new System.EventHandler(this.target_objects_Click);
+            this.target_objects.TextChanged += new System.EventHandler(this.target_objects_TextChanged);
             // 
             // system_management
             // 
