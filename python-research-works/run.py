@@ -61,8 +61,8 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
 
-processing_type = ""          		# Store processing type.
-labels = []					  		# Store Labels in a list.
+processing_type = ""                # Store processing type.
+labels = []                         # Store Labels in a list.
 
 
 model_config_path =  f'data/models/{args["model_name"]}/pipeline.config'        # Store the path of config file
@@ -71,7 +71,7 @@ label_map_path    =  f'data/mscoco_label_map.pbtxt'                             
 
 if args['labels'] == "all_labels":
 
-    processing_type = "all_labels"	# Change processing_type as all_labels
+    processing_type = "all_labels"  # Change processing_type as all_labels
 
 else:
     processing_type = "labels"      # Change as labels to perform
@@ -139,7 +139,7 @@ while True:
 
     for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
-    	if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
+        if detections['detection_scores'][0].numpy() is None or detections['detection_scores'][0].numpy()[i] > min_score_thresh:
 
             box = tuple(detections['detection_boxes'][0].numpy()[i].tolist())
 
@@ -165,19 +165,19 @@ while True:
     im_width, im_height = image_np.shape[1::-1]
 
     for box, color in box_to_display_str_map.items():
-    	ymin, xmin, ymax, xmax = box
+        ymin, xmin, ymax, xmax = box
 
-    	ymin = ymin * im_height
-    	xmin = xmin * im_width
-    	ymax = ymax * im_height
-    	xmax = xmax * im_width
+        ymin = ymin * im_height
+        xmin = xmin * im_width
+        ymax = ymax * im_height
+        xmax = xmax * im_width
 
-    	x = xmin
-    	y = ymin
-    	w = xmax - xmin
-    	h = ymax - ymin
+        x = xmin
+        y = ymin
+        w = xmax - xmin
+        h = ymax - ymin
 
-    	if box_to_display_str_map[box][0] in labels: # Get only label name not the total number of items
+        if box_to_display_str_map[box][0].reaplce("_"," ") in labels: # Get only label name not the total number of items
 
 
             try: # Getting color from labelcolors.label_with_colors

@@ -177,7 +177,7 @@ while True:
     	w = xmax - xmin
     	h = ymax - ymin
 
-    	if box_to_display_str_map[box][0] in labels: # Get only label name not the total number of items
+    	if box_to_display_str_map[box][0].reaplce("_"," ") in labels: # Get only label name not the total number of items
 
 
             try: # Getting color from labelcolors.label_with_colors

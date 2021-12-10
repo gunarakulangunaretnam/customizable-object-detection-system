@@ -93,5 +93,37 @@ namespace object_detection_alerting_system
             target_objects.Text = TargetObject.selected_objects;
             
         }
+
+        public void target_objects_cleanup(string textData) {
+
+            string targetObjectText = "";
+
+            string[] textSplited = textData.Split(',');
+
+            foreach (string txt in textSplited) {
+
+                if (txt.Contains(" "))
+                {
+
+                    targetObjectText += "," +txt.Replace(" ","_");
+
+                }
+                else {
+
+                    targetObjectText += "," + txt;
+
+                }
+
+            }
+
+            MessageBox.Show(targetObjectText.TrimStart(','));
+
+        }
+        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            target_objects_cleanup(target_objects.Text);
+        }
     }
 }
