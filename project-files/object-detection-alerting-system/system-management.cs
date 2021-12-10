@@ -63,7 +63,7 @@ namespace object_detection_alerting_system
 
         private void opacity_trackbar_Scroll(object sender, EventArgs e)
         {
-            textBox3.Text = min_tracker.Value.ToString();
+            min_threshold_text.Text = min_tracker.Value.ToString();
         }
 
         private void alarm_status_combo_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,9 +121,21 @@ namespace object_detection_alerting_system
             return targetObjectText = targetObjectText.TrimStart(',');
 
         }
+
+
+
+        public void ClearForms() {
+
+            system_name_box.Clear();
+            model_list_combo.Text = "";
+            target_objects.Clear();
+            alarm_status_combo.Text = "";
+            warning_message_box.Clear();
+            min_threshold_text.Text = "50";
+            min_tracker.Value = 50;
         
-      
-        
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -155,7 +167,8 @@ namespace object_detection_alerting_system
                 cmd.Parameters.AddWithValue("@warning_message", warningMessage);
                 cmd.Parameters.AddWithValue("@min_threshold", min_tracker.Value.ToString());
                 cmd.ExecuteNonQuery();
-
+                ClearForms();
+                MessageBox.Show("Data Inserted!");
 
             }
             else {

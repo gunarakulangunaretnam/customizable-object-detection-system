@@ -33,7 +33,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.min_threshold_text = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.min_tracker = new System.Windows.Forms.TrackBar();
             this.warning_message_box = new System.Windows.Forms.RichTextBox();
@@ -88,7 +88,7 @@
             // 
             this.groupBox1.Controls.Add(this.target_objects);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.min_threshold_text);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.min_tracker);
             this.groupBox1.Controls.Add(this.warning_message_box);
@@ -121,16 +121,16 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox3
+            // min_threshold_text
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(1626, 288);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(65, 34);
-            this.textBox3.TabIndex = 58;
-            this.textBox3.Text = "50";
+            this.min_threshold_text.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.min_threshold_text.Location = new System.Drawing.Point(1626, 288);
+            this.min_threshold_text.Multiline = true;
+            this.min_threshold_text.Name = "min_threshold_text";
+            this.min_threshold_text.ReadOnly = true;
+            this.min_threshold_text.Size = new System.Drawing.Size(65, 34);
+            this.min_threshold_text.TabIndex = 58;
+            this.min_threshold_text.Text = "50";
             // 
             // label6
             // 
@@ -298,7 +298,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TrackBar min_tracker;
         private System.Windows.Forms.RichTextBox warning_message_box;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox min_threshold_text;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox target_objects;
