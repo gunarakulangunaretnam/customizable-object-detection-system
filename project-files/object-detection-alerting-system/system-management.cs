@@ -252,6 +252,27 @@ namespace object_detection_alerting_system
             
         }
 
+        public string decideVideoSoruce() {
+
+            string videoSource = "";
+
+            string indexOfWebcam = webcam_index_box.Value.ToString();
+
+            if (radioButton1.Checked == true) {
+
+                videoSource = "[WEBCAM]|" + indexOfWebcam;
+
+            }
+            else if(radioButton2.Checked == true) {
+
+                videoSource = "[VIDEO]|" + browse_text.Text;
+
+            }
+
+            return videoSource;
+
+        }
+
         public void WriteWarningMessageToTextFile(string messgae) {
 
             using (StreamWriter writetext = new StreamWriter("system-files/alarm-text-to-speech-notes.txt"))
@@ -287,10 +308,12 @@ namespace object_detection_alerting_system
 
             }
 
+            string videoSource = decideVideoSoruce();
+
             using (StreamWriter writetext = new StreamWriter("run.bat"))
             {
 
-                writetext.WriteLine("python run.py -m "+ modelName + " -l "+ targetObjects + " -a "+ alarmStatus + " -t "+ minThreshold + "");
+                writetext.WriteLine("python run.py -m "+ modelName + " -l "+ targetObjects + " -a "+ alarmStatus + " -t "+ minThreshold + " -s \""+ videoSource + "\"");
             
             }
 
