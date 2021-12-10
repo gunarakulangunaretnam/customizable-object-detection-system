@@ -19,6 +19,7 @@ ap.add_argument("-m", "--model_name", required=True, help="Name of the model")  
 ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")          # Create labels argument
 ap.add_argument("-a", "--alarm", required=True, help="Alram status")                                    # Alarm required or not argument
 ap.add_argument("-t", "--minimum_threshold", required=True, help="Minimum threshold of detection rate") # minimum_threshol
+ap.add_argument("-s", "--source", required=True, help="Source of processing")                           # video / webcam
 args = vars(ap.parse_args())                                                                            # Build argparse
 
 #Text to speech setup.
@@ -107,7 +108,17 @@ def detect_fn(image):
 category_index = label_map_util.create_category_index_from_labelmap(label_map_path,
                                                                     use_display_name=True)
 
-cap = cv2.VideoCapture(0)
+video_source = "";
+
+if str(args["source"]).split("|")[0] == "[WEBCAM]":
+
+    video_source = int(args["source"].split("|")[1])
+
+elif str(args["source"]).split("|")[0] == "[VIDEO]":
+
+    video_source = str(args["source"].split("|")[1])
+
+cap = cv2.VideoCapture(video_source)
 
 while True:
     # Read frame from camera

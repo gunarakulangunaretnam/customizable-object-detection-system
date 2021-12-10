@@ -130,55 +130,129 @@ If it shows like above, that means you have successfully installed CUDA in your 
 
 ### Installing TensorFlow
 
-- Installing argparse
+Now, It's time to install TensorFlow. It is simple now. Just open CMD and type following command, that will install TensorFlow for both environments including GPU.
+
+Note: If your computer does not have a GPU, You can still install it. It will only install the CPU version, if it does not find CUDA & CUDDN.
+
+- Installing TensorFlow
 
   ```
-    pip install argparse
+    pip install tensorflow
   ```
 
-- Installing psutil
+To check whether this installed TensorFlow utilize the GPU. Open python interpreter and write following code. It will show the GPU memory.  
 
-  ```
-    pip install psutil
-  ```
 
-- Installing keyboard
-
+- Check TensorFlow uses GPU
   ```
-    pip install keyboard
+  import tensorflow as tf
+  print(tf.test.gpu_device_name())
   ```
 
-- Installing playsound
+
+Note: If your computer does not have a GPU, you need to check it. You can simply skip everything, including CUDA & CUDDN installation and only install "pip install tensorflow" and go ahead with the next step.
+
+### Installing Object Detection Framework
+
+In order to install the object detection framework, clone the following repository. This repo contains Google Research of TensorFlow and Object Detection essential Contents.
+
+Clone this Google models repository:- [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
+
+This repo is large (700MB). it contains almost all files of the TensorFlow and Google Object Detection Framework researches, we should install it manually to utilize the object detection framework.
+
+- Clone models repo
+
+  ```
+    git clone https://github.com/tensorflow/models.git
+  ```
+
+
+Now, we have to download Protobuf to convert the serialize structured data.
+
+
+Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
+
+01.Extract it.
+
+02.Copy the protoc.exe and paste it under the cloned repo (models/research) folder.
+
+
+- From models/research folder, Execute the following code in CMD
+
+  ```
+    protoc object_detection/protos/*.proto --python_out=.
+  ```
+
+03.To install the object detection manually, copy the setup.py that is under (models/research/object_detection/packages/tf2/setup.py) and paste in the (models/research) folder.
+
+
+- Install object detection manually from (models/research).
+
+  ```
+    pip install -e .
+  ```
+
+04.After the installation, we don't need the cloned models repo anymore.
+
+### Installing Other Frameworks
+
+
+- Installing TF-Slim
+
+  ```
+    pip install tf-slim
+  ```
+
+- Installing tf-models-official
+
+  ```
+    pip install tf-models-official
+  ```
+
+- Installing Mediapipe
+
+  ```
+    pip install mediapipe
+  ```
+
+- Installing Opencv
+
+  ```
+    pip install opencv-python
+  ```
+
+- Installing Playsound
 
   ```
     pip install playsound
   ```
 
-- Installing SpeechRecognition
+- Installing Pyttsx3
 
   ```
-    pip install SpeechRecognition
-  ```
-
-- Installing Pynput
-
-  ```
-    pip install pynput
+    pip install pyttsx3
   ```
 
 
-## Run Method 1
+Note: If you encounter any module missing issue, just try with "pip install MODULENAME", if it does not work try search on Google for answers.
 
+### Running Object Detection Alerting System
+
+Now, it's time to run our app. We have installed all of the important frameworks. If you find any issues on installation, it's better to do a Google search.
+
+- Clone the repo
 
 ```
-  Execute the (voice_typer.exe) that is found on "Voice_Typer\bin\Debug"
+  git clone https://github.com/GunarakulanGunaretnam/object-detection-alerting-system.git
 ```
 
-## Run Method 2
+#### Start the program
 
 ```
-  Open the project using Visual Studio and click debuging to run the project.
+  Execute the (object-detection-alerting-system.exe) that is found under "object-detection-alerting-system\project-files\object-detection-alerting-system\bin\Debug"
 ```
+
+![TensorFlow Versions](github-readme-content/demo.jpg)
 
 
 Any Questions? | Conduct Me
