@@ -19,9 +19,12 @@ namespace object_detection_alerting_system
             InitializeComponent();
         }
 
+
+        int selectedIndex;
+
         public void getModels()
         {
-            
+
             string[] folders = System.IO.Directory.GetDirectories(@"data/models/", "*", System.IO.SearchOption.TopDirectoryOnly);
 
 
@@ -81,12 +84,12 @@ namespace object_detection_alerting_system
                 warning_message_box.Enabled = true;
 
             }
-            
+
         }
 
         private void target_objects_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void target_objects_Click(object sender, EventArgs e)
@@ -94,7 +97,7 @@ namespace object_detection_alerting_system
             target_objects_panel TargetObject = new target_objects_panel();
             TargetObject.ShowDialog();
             target_objects.Text = TargetObject.selected_objects;
-            
+
         }
 
         public string target_objects_cleanup(string textData) {
@@ -108,7 +111,7 @@ namespace object_detection_alerting_system
                 if (txt.Contains(" "))
                 {
 
-                    targetObjectText += "," +txt.Replace(" ","_");
+                    targetObjectText += "," + txt.Replace(" ", "_");
 
                 }
                 else {
@@ -132,7 +135,24 @@ namespace object_detection_alerting_system
             warning_message_box.Clear();
             min_threshold_text.Text = "50";
             min_tracker.Value = 50;
-        
+
+        }
+
+
+        public void DeleteSystem(int index) {
+
+            string systemName =  dataGridView1.Rows[index].Cells[1].Value.ToString();
+
+            SQLiteConnection SqlConnection = new SQLiteConnection("Data Source=system-files/database.db");
+            SqlConnection.Open();
+
+            SQLiteCommand cmd = new SQLiteCommand("DELETE FROM created_systems WHERE system_name = "+ systemName + "", SqlConnection);
+            cmd.ExecuteNonQuery();
+
+            SqlConnection.Close();
+
+            SelectData();
+
         }
 
         public void SelectData()
@@ -155,7 +175,7 @@ namespace object_detection_alerting_system
 
             int index = 0;
 
-            if (result.Read()) {
+            while(result.Read()) {
                 index++;
 
                 dataGridViewTable.Rows.Add(index, result["system_name"], result["model_name"], result["target_objects"], result["alarm_status"], result["warning_message"], result["min_threshold"]);
@@ -163,6 +183,8 @@ namespace object_detection_alerting_system
             }
 
             dataGridView1.DataSource = dataGridViewTable;
+
+            SqlConnection.Close();
         }
 
 
@@ -196,6 +218,9 @@ namespace object_detection_alerting_system
                 cmd.Parameters.AddWithValue("@warning_message", warningMessage);
                 cmd.Parameters.AddWithValue("@min_threshold", min_tracker.Value.ToString());
                 cmd.ExecuteNonQuery();
+                
+                SqlConnection.Close();
+
                 SelectData();
                 ClearForms();
                 MessageBox.Show("Data Inserted!");
@@ -207,6 +232,20 @@ namespace object_detection_alerting_system
 
             }
           
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedIndex = dataGridView1.CurrentRow.Index;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Please confirm before proceed" + "\n" + "Do you want to delete this system ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DeleteSystem(selectedIndex);
+            }
+            
         }
     }
 }
