@@ -72,6 +72,12 @@
     <Compile Include="system-management.Designer.cs">
       <DependentUpon>system-management.cs</DependentUpon>
     </Compile>
+    <Compile Include="target-objects-panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="target-objects-panel.Designer.cs">
+      <DependentUpon>target-objects-panel.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="system-management.resx">
       <DependentUpon>system-management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="target-objects-panel.resx">
+      <DependentUpon>target-objects-panel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

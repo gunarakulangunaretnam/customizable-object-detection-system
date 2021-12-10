@@ -31,5 +31,10 @@ namespace object_detection_alerting_system
             this.Hide();
             
         }
+
+        private void sub_dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

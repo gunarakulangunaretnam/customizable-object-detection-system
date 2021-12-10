@@ -16,5 +16,10 @@ namespace object_detection_alerting_system
         {
             InitializeComponent();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

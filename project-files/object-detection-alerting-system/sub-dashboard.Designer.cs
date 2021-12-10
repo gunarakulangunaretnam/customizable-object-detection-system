@@ -65,6 +65,7 @@
             this.Name = "sub_dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "sub_dashboard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.sub_dashboard_FormClosed);
             this.ResumeLayout(false);
 
         }
