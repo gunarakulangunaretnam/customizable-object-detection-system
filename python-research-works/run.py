@@ -27,7 +27,7 @@ en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS
 ru_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_RU-RU_IRINA_11.0"  # male
 engine.setProperty('voice', en_voice_id)
 rate = engine.getProperty('rate')
-engine.setProperty('rate', rate - 30)
+engine.setProperty('rate', rate - 25)
 
 alarm_text_to_speech_notes = ""
 
@@ -153,14 +153,6 @@ while True:
                 box_to_display_str_map[box].append(display_str) # Join the number of eleements with label Name
 
 
-                if args["alarm"] == "[TRUE]":
-
-                    number_of_time_detected = number_of_time_detected + 1
-
-                    if number_of_time_detected == 20:
-                        thread1 = threading.Thread(target = play_alarm)
-                        thread1.start()
-
 
     im_width, im_height = image_np.shape[1::-1]
 
@@ -177,7 +169,7 @@ while True:
         w = xmax - xmin
         h = ymax - ymin
 
-        if box_to_display_str_map[box][0].reaplce("_"," ") in labels: # Get only label name not the total number of items
+        if box_to_display_str_map[box][0].replace("_"," ") in labels: # Get only label name not the total number of items
 
 
             try: # Getting color from labelcolors.label_with_colors
@@ -190,6 +182,14 @@ while True:
                 g = 0
                 b = 0
 
+
+            if args["alarm"] == "[TRUE]":
+
+                number_of_time_detected = number_of_time_detected + 1
+
+                if number_of_time_detected == 20:
+                    thread1 = threading.Thread(target = play_alarm)
+                    thread1.start()
 
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (b, g, r), 4)
 

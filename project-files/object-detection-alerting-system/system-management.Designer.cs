@@ -46,6 +46,7 @@
             this.system_name_box = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.target_objects = new System.Windows.Forms.RichTextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.min_tracker)).BeginInit();
@@ -88,6 +89,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.target_objects);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.min_threshold_text);
@@ -248,6 +250,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Start the System";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // target_objects
             // 
@@ -260,6 +263,19 @@
             this.target_objects.Text = "";
             this.target_objects.Click += new System.EventHandler(this.target_objects_Click);
             this.target_objects.TextChanged += new System.EventHandler(this.target_objects_TextChanged);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.OrangeRed;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(1304, 416);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(180, 44);
+            this.button3.TabIndex = 60;
+            this.button3.Text = "Clear";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // system_management
             // 
@@ -304,5 +320,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox target_objects;
+        private System.Windows.Forms.Button button3;
     }
 }

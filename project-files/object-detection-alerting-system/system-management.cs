@@ -247,5 +247,55 @@ namespace object_detection_alerting_system
             }
             
         }
+
+        public void WriteWarningMessageToTextFile(string messgae) {
+
+            using (StreamWriter writetext = new StreamWriter("system-files/alarm-text-to-speech-notes.txt"))
+            {
+
+                writetext.WriteLine(messgae);
+
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            string modelName = dataGridView1.Rows[selectedIndex].Cells[2].Value.ToString();
+            string targetObjects = target_objects_cleanup(dataGridView1.Rows[selectedIndex].Cells[3].Value.ToString()).ToLower();
+            string alarmStatus = dataGridView1.Rows[selectedIndex].Cells[4].Value.ToString();
+           
+            string warningMessage = "";
+
+            string minThreshold = dataGridView1.Rows[selectedIndex].Cells[6].Value.ToString();
+
+            if (alarmStatus == "On")
+            {
+                alarmStatus = "[TRUE]";
+                warningMessage = dataGridView1.Rows[selectedIndex].Cells[5].Value.ToString();
+                WriteWarningMessageToTextFile(warningMessage);
+
+            }
+            else if(alarmStatus == "Off") {
+
+                alarmStatus = "[FALSE]";
+
+            }
+
+            using (StreamWriter writetext = new StreamWriter("run.bat"))
+            {
+
+                writetext.WriteLine("python run.py -m "+ modelName + " -l "+ targetObjects + " -a "+ alarmStatus + " -t "+ minThreshold + "");
+            
+            }
+
+            System.Diagnostics.Process.Start(@"run.bat");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ClearForms();
+        }
     }
 }
