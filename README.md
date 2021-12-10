@@ -254,6 +254,8 @@ Now, it's time to run our app. We have installed all of the important frameworks
 
 ![TensorFlow Versions](github-readme-content/demo.jpg)
 
+![TensorFlow Versions](github-readme-content/demo2.jpg)
+
 
 Any Questions? | Conduct Me
 ---
