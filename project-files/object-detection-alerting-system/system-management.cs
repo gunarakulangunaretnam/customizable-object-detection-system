@@ -303,13 +303,11 @@ namespace object_detection_alerting_system
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked == true) {
+        {   
 
-                browse_btn.Enabled = false;
-                webcam_index_box.Enabled = true;
-            }
-
+            browse_btn.Enabled = false;
+            webcam_index_box.Enabled = true;
+            browse_text.Text = "";
         
         }
 
@@ -318,6 +316,20 @@ namespace object_detection_alerting_system
             browse_btn.Enabled = true;
             webcam_index_box.Enabled = false;
 
+        }
+
+        private void browse_btn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Video Files| *.mp4; *.avi; *.wmv; *.mkv;";
+            dialog.Title = "Please select an video to process.";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.FileName;
+                browse_text.Text = path.ToString().Replace(@"\", @"\\");
+
+            }
         }
     }
 }

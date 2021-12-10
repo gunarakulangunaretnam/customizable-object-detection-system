@@ -51,7 +51,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.browse_text = new System.Windows.Forms.TextBox();
             this.browse_btn = new System.Windows.Forms.Button();
             this.webcam_index_box = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -289,7 +289,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(105, 571);
+            this.radioButton1.Location = new System.Drawing.Point(107, 573);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(157, 24);
             this.radioButton1.TabIndex = 9;
@@ -302,12 +302,12 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(294, 571);
+            this.radioButton2.Location = new System.Drawing.Point(296, 573);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(163, 24);
+            this.radioButton2.Size = new System.Drawing.Size(148, 24);
             this.radioButton2.TabIndex = 10;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Recorded Video";
+            this.radioButton2.Text = "Video Source ";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -315,7 +315,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(625, 570);
+            this.label7.Location = new System.Drawing.Point(627, 569);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 22);
             this.label7.TabIndex = 61;
@@ -325,37 +325,38 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(870, 571);
+            this.label8.Location = new System.Drawing.Point(872, 567);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 22);
             this.label8.TabIndex = 62;
             this.label8.Text = "Video Path:";
             // 
-            // textBox1
+            // browse_text
             // 
-            this.textBox1.Location = new System.Drawing.Point(992, 571);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(407, 27);
-            this.textBox1.TabIndex = 63;
+            this.browse_text.Location = new System.Drawing.Point(994, 567);
+            this.browse_text.Multiline = true;
+            this.browse_text.Name = "browse_text";
+            this.browse_text.ReadOnly = true;
+            this.browse_text.Size = new System.Drawing.Size(407, 27);
+            this.browse_text.TabIndex = 63;
             // 
             // browse_btn
             // 
             this.browse_btn.BackColor = System.Drawing.Color.Teal;
             this.browse_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.browse_btn.ForeColor = System.Drawing.Color.Transparent;
-            this.browse_btn.Location = new System.Drawing.Point(1317, 601);
+            this.browse_btn.Location = new System.Drawing.Point(1319, 597);
             this.browse_btn.Name = "browse_btn";
             this.browse_btn.Size = new System.Drawing.Size(84, 29);
             this.browse_btn.TabIndex = 61;
             this.browse_btn.Text = "Browse";
             this.browse_btn.UseVisualStyleBackColor = false;
+            this.browse_btn.Click += new System.EventHandler(this.browse_btn_Click);
             // 
             // webcam_index_box
             // 
             this.webcam_index_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.webcam_index_box.Location = new System.Drawing.Point(775, 570);
+            this.webcam_index_box.Location = new System.Drawing.Point(777, 569);
             this.webcam_index_box.Name = "webcam_index_box";
             this.webcam_index_box.Size = new System.Drawing.Size(56, 28);
             this.webcam_index_box.TabIndex = 65;
@@ -368,7 +369,7 @@
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.webcam_index_box);
             this.Controls.Add(this.browse_btn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.browse_text);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.radioButton2);
@@ -417,7 +418,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox browse_text;
         private System.Windows.Forms.Button browse_btn;
         private System.Windows.Forms.NumericUpDown webcam_index_box;
     }
