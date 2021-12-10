@@ -36,14 +36,14 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.min_tracker = new System.Windows.Forms.TrackBar();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.warning_message_box = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.alarm_status_combo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.model_list_combo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.system_name_box = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.target_objects = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -91,14 +91,14 @@
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.min_tracker);
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.warning_message_box);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.alarm_status_combo);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.model_list_combo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.system_name_box);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(102, 34);
             this.groupBox1.Name = "groupBox1";
@@ -152,14 +152,14 @@
             this.min_tracker.Value = 50;
             this.min_tracker.Scroll += new System.EventHandler(this.opacity_trackbar_Scroll);
             // 
-            // richTextBox1
+            // warning_message_box
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(1135, 79);
-            this.richTextBox1.MaxLength = 300;
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(556, 136);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
+            this.warning_message_box.Location = new System.Drawing.Point(1135, 79);
+            this.warning_message_box.MaxLength = 300;
+            this.warning_message_box.Name = "warning_message_box";
+            this.warning_message_box.Size = new System.Drawing.Size(556, 136);
+            this.warning_message_box.TabIndex = 9;
+            this.warning_message_box.Text = "";
             // 
             // label5
             // 
@@ -226,14 +226,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Select a model";
             // 
-            // textBox1
+            // system_name_box
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(230, 79);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(482, 34);
-            this.textBox1.TabIndex = 1;
+            this.system_name_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.system_name_box.Location = new System.Drawing.Point(230, 79);
+            this.system_name_box.Multiline = true;
+            this.system_name_box.Name = "system_name_box";
+            this.system_name_box.Size = new System.Drawing.Size(482, 34);
+            this.system_name_box.TabIndex = 1;
             // 
             // button1
             // 
@@ -288,7 +288,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox system_name_box;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox model_list_combo;
         private System.Windows.Forms.Label label2;
@@ -297,7 +297,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TrackBar min_tracker;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox warning_message_box;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace object_detection_alerting_system
 {
@@ -19,7 +21,7 @@ namespace object_detection_alerting_system
 
         public void getModels()
         {
-
+            
             string[] folders = System.IO.Directory.GetDirectories(@"data/models/", "*", System.IO.SearchOption.TopDirectoryOnly);
 
 
@@ -70,12 +72,12 @@ namespace object_detection_alerting_system
             if (alarm_status_combo.Text == "Off")
             {
 
-                richTextBox1.Enabled = false;
+                warning_message_box.Enabled = false;
 
             }
             else {
 
-                richTextBox1.Enabled = true;
+                warning_message_box.Enabled = true;
 
             }
             
@@ -94,7 +96,7 @@ namespace object_detection_alerting_system
             
         }
 
-        public void target_objects_cleanup(string textData) {
+        public string target_objects_cleanup(string textData) {
 
             string targetObjectText = "";
 
@@ -116,14 +118,52 @@ namespace object_detection_alerting_system
 
             }
 
-            MessageBox.Show(targetObjectText.TrimStart(','));
+            return targetObjectText = targetObjectText.TrimStart(',');
 
         }
+        
+      
         
 
         private void button2_Click(object sender, EventArgs e)
         {
-            target_objects_cleanup(target_objects.Text);
+
+            if (system_name_box.Text != "" && model_list_combo.Text != "" && target_objects.Text != "" && alarm_status_combo.Text != "")
+            {
+                string warningMessage = "";
+
+                if (alarm_status_combo.Text == "Off")
+                {
+
+                    warningMessage = "[SKIPPED]";
+
+                }
+                else {
+
+                    warningMessage = warning_message_box.Text;
+                }
+
+
+                SQLiteConnection SqlConnection = new SQLiteConnection("Data Source=system-files/database.db");
+                SqlConnection.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand("INSERT INTO created_systems ('system_name','model_name','target_objects','alarm_status','warning_message','min_threshold') VALUES(@system_name, @model_name, @target_objects, @alarm_status, @warning_message, @min_threshold)", SqlConnection);
+                cmd.Parameters.AddWithValue("@system_name", system_name_box.Text);
+                cmd.Parameters.AddWithValue("@model_name", model_list_combo.Text);
+                cmd.Parameters.AddWithValue("@target_objects", target_objects.Text);
+                cmd.Parameters.AddWithValue("@alarm_status", alarm_status_combo.Text);
+                cmd.Parameters.AddWithValue("@warning_message", warningMessage);
+                cmd.Parameters.AddWithValue("@min_threshold", min_tracker.Value.ToString());
+                cmd.ExecuteNonQuery();
+
+
+            }
+            else {
+
+                MessageBox.Show("Please fill out all fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+          
         }
     }
 }
