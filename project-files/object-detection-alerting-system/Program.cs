@@ -16,7 +16,7 @@ namespace object_detection_alerting_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new sub_dashboard());
+            Application.Run(new Form1());
         }
     }
 }
