@@ -37,7 +37,11 @@ def create_directory(target_url):
     file.close()
 
     if os.path.exists(directory_structure_path):
-        os.remove(directory_structure_path)  # Delete config folder
+        os.remove(directory_structure_path)
+
+    for item in os.listdir('data/models/'):
+        if item.endswith(".zip") or item.endswith(".gz") or item.endswith(".rar") or item.endswith(".tar"):
+            os.remove(os.path.join('data/models/', item))
 
 
 create_directory(args["url"])

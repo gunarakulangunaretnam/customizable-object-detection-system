@@ -23,5 +23,13 @@ namespace object_detection_alerting_system
             model_Management.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            system_management model_Management = new system_management();
+            model_Management.Show();
+            this.Hide();
+            
+        }
     }
 }

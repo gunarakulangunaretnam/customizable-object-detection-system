@@ -11,3 +11,4 @@ C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\obje
 C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object-detection-alerting-system.pdb
 C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.sub_dashboard.resources
 C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.model_management.resources
+C:\Users\Gunarakulan\Desktop\object-detection-alerting-system\project-files\object-detection-alerting-system\obj\Debug\object_detection_alerting_system.system_management.resources
