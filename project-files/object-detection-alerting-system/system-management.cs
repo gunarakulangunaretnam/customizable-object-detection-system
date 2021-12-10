@@ -52,6 +52,7 @@ namespace object_detection_alerting_system
 
         private void system_management_Load(object sender, EventArgs e)
         {
+            SelectData();
             getModels();
             alarm_status_combo.SelectedIndex = 0;
         }
@@ -122,8 +123,6 @@ namespace object_detection_alerting_system
 
         }
 
-
-
         public void ClearForms() {
 
             system_name_box.Clear();
@@ -134,6 +133,36 @@ namespace object_detection_alerting_system
             min_threshold_text.Text = "50";
             min_tracker.Value = 50;
         
+        }
+
+        public void SelectData()
+        {
+            DataTable dataGridViewTable = new DataTable();
+            dataGridViewTable.Columns.Add("No");
+            dataGridViewTable.Columns.Add("System Name");
+            dataGridViewTable.Columns.Add("Model Name");
+            dataGridViewTable.Columns.Add("Target Objects");
+            dataGridViewTable.Columns.Add("Alarm Status");
+            dataGridViewTable.Columns.Add("Warning Message");
+            dataGridViewTable.Columns.Add("Minimum Threshold");
+
+
+            SQLiteConnection SqlConnection = new SQLiteConnection("Data Source=system-files/database.db");
+            SqlConnection.Open();
+
+            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM created_systems", SqlConnection);
+            SQLiteDataReader result = cmd.ExecuteReader();
+
+            int index = 0;
+
+            if (result.Read()) {
+                index++;
+
+                dataGridViewTable.Rows.Add(index, result["system_name"], result["model_name"], result["target_objects"], result["alarm_status"], result["warning_message"], result["min_threshold"]);
+                
+            }
+
+            dataGridView1.DataSource = dataGridViewTable;
         }
 
 
@@ -167,6 +196,7 @@ namespace object_detection_alerting_system
                 cmd.Parameters.AddWithValue("@warning_message", warningMessage);
                 cmd.Parameters.AddWithValue("@min_threshold", min_tracker.Value.ToString());
                 cmd.ExecuteNonQuery();
+                SelectData();
                 ClearForms();
                 MessageBox.Show("Data Inserted!");
 
