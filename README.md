@@ -265,4 +265,3 @@ Social Media Links
 * [Twitter Profile](https://twitter.com/gunarakulang)
 * [Instagram Profile](https://www.instagram.com/gunarakulangunaretnam/)
 * [Youtube Channel](https://www.youtube.com/channel/UCMWkED5sabgVZSCKjZuRJXA)
-* [Youtube Channel](https://www.youtube.com/channel/UCMWkED5sabgVZSCKjZuRJXA/videos)
