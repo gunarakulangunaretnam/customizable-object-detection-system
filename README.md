@@ -1,5 +1,7 @@
 
-# Introduction to Object Detection Alerting System
+# Customizable Object Detection System
+
+## Introduction
 
 Object detection is a computer technology related to computer vision and image processing that deals with detecting instances of semantic objects of a certain class in digital images and videos.
 
