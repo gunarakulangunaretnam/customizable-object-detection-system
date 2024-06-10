@@ -1,5 +1,4 @@
-
-# CUSTOMIZABLE OBJECT DETECTION SYSTEM
+# Customizable Object Detection System
 
 ## Introduction
 
@@ -259,7 +258,7 @@ Now, it's time to run our app. We have installed all of the important frameworks
 ![TensorFlow Versions](github-readme-content/demo2.jpg)
 
 
-# CONTACT
+# Contact
 
 ### Website: 
 
